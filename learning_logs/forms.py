@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topic, Entry
+from .models import Topic, Entry, UserFile
 
 
 class TopicForm(forms.ModelForm):
@@ -15,3 +15,9 @@ class EntryForm(forms.ModelForm):
         fields = ['text']
         labels = {'text': 'Entry:'}
         widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = UserFile
+        fields = ('description', 'document',)

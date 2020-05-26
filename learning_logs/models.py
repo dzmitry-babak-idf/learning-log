@@ -23,3 +23,10 @@ class Entry(models.Model):
         if len(self.text) < 50:
             return self.text
         return f'{self.text[:50]}...'
+
+
+class UserFile(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)

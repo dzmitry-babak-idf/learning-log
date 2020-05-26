@@ -7,3 +7,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
 ]
+
+import django.contrib.auth.urls

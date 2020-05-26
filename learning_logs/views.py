@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Topic, Entry
-from .forms import TopicForm, EntryForm
+from .forms import TopicForm, EntryForm, DocumentForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
@@ -41,9 +41,23 @@ def new_topic(request):
 
 
 @login_required
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:addfile')
+    else:
+        form = DocumentForm()
+    return render(request, 'learning_logs/model_form_upload.html', {
+        'form': form
+    })
+
+
+@login_required
 def new_entry(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
-    check_topic_owner(topic,request)
+    check_topic_owner(topic, request)
     if request.method != 'POST':
         form = EntryForm()
     else:
