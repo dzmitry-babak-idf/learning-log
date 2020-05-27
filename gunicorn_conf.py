@@ -1,4 +1,4 @@
-command = '/home/www/code/learning-log/ll_env/bin/gunicorn'
+command = '/home/www/code/learning-log/env/bin/gunicorn'
 pythonpath = '/home/www/code/learning-log/learning-log/learning_log'
 bind = '127.0.0.1:8001'
 workers = '2'
